@@ -1,2 +1,2 @@
-# gfsscs-website
+# GFSSCS Website
 Website for GFSSCS
