@@ -1,13 +1,19 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
+import Hero from "@/components/sections/Hero";
+import Layout from "@/components/Layout";
+import About from "@/components/sections/About";
 
 export default function Home() {
   return (
-    <div>
-      <Navbar />
-    </div>
+    <Layout>
+      <div className="bg-[url(/hero.png)] bg-no-repeat bg-cover w-full h-full bg-center">
+        <Navbar page="/" />
+        <Hero />
+      </div>
+
+      <div className="bg-[url(/about.png)] bg-no-repeat bg-cover w-full h-full bg-center">
+        <About />
+      </div>
+    </Layout>
   );
 }

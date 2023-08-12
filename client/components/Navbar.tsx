@@ -1,4 +1,6 @@
+import clsx from "clsx";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const links = [
   {
@@ -15,17 +17,23 @@ const links = [
   },
 ];
 
-function Navbar() {
+function Navbar({ page }: { page: string }) {
   return (
-    <div className="flex justify-between w-full px-24 py-12">
+    <div className="px-36 py-12 flex justify-between w-full items-center">
       <div>
         <h1>GFSS</h1>
       </div>
 
       <div className="flex gap-12">
         {links.map((link) => (
-          <Link href={link.path}>
-            <h1 className="font-mono">{link.name}</h1>
+          <Link href={link.path} key={link.name}>
+            <h1
+              className={clsx("font-mono", {
+                "text-primary": page === link.path,
+              })}
+            >
+              {link.name}
+            </h1>
           </Link>
         ))}
       </div>
