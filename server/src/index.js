@@ -1,14 +1,20 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import eventsRouter from './routes/events.js';
+import resourcesRouter from './routes/resources.js';
 
 // set up express and middleware
+dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-// connect to mongodb
-const uri = "mongodb+srv://gfsscs:asdfghjkl0@website.rgbpelv.mongodb.net/Website?retryWrites=true&w=majority";
-mongoose.connect(uri);
+app.use("/events", eventsRouter);
+app.use("/resources", resourcesRouter);
 
-app.listen(8080, () => console.log("server running"));
+// connect to mongodb
+mongoose.connect(process.env.URI);
+
+app.listen(process.env.PORT, () => console.log("server running"));
