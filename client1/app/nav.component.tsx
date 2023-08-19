@@ -4,34 +4,34 @@ import { useRouter } from "next/router";
 
 const links = [
   {
-    name: "home",
+    name: "home_",
     path: "/",
   },
   {
-    name: "resources",
+    name: "resources_",
     path: "/resources",
   },
   {
-    name: "schedule",
+    name: "schedule_",
     path: "/schedule",
   },
 ];
 
-function Navbar({ page }: { page: string }) {
+export default function Nav({ page }: { page: string }) {
   return (
-    <div className="px-36 py-12 flex justify-between w-full items-center">
+    <div className="px-15vw py-10 flex justify-between w-full items-center text-white">
       <div>
-        <h1 className="text-2xl">GFSS</h1>
+        <h1 className="text-2xl font-sans">GFSS</h1>
       </div>
 
-      <div className="flex gap-12">
+      <div className="flex gap-10">
         {links.map((link) => (
           <Link href={link.path} key={link.name}>
             <h1
               className={clsx(
-                "font-mono hover:text-primary transition-all duration-300",
+                "text-1xl font-mono hover:text-gold transition-all duration-200",
                 {
-                  "text-primary": page === link.path,
+                  "text-gold": page === link.path,
                 }
               )}
             >
@@ -41,7 +41,5 @@ function Navbar({ page }: { page: string }) {
         ))}
       </div>
     </div>
-  );
+  )
 }
-
-export default Navbar;
