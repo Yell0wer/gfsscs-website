@@ -17,4 +17,4 @@ app.use("/resources", resourcesRouter);
 // connect to mongodb
 mongoose.connect(process.env.URI);
 
-app.listen(process.env.PORT, () => console.log("server running"));
+app.listen(process.env.PORT, () => console.log(`Server running on port ${process.env.PORT}`));

@@ -5,7 +5,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
     try {
         const response = await EventModel.find({});
-        res.json(response);
+        res.json([]);
     } catch (err) {
         res.json(err);
     }
