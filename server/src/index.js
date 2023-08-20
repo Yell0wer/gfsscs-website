@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import categoriesRouter from './routes/categories.js';
 import eventsRouter from './routes/events.js';
 import resourcesRouter from './routes/resources.js';
 
@@ -11,8 +12,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use("/events", eventsRouter);
-app.use("/resources", resourcesRouter);
+app.use('/categories', categoriesRouter);
+app.use('/events', eventsRouter);
+app.use('/resources', resourcesRouter);
 
 // connect to mongodb
 mongoose.connect(process.env.URI);

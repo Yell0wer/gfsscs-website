@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 const links = [
   {
