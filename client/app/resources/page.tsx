@@ -13,11 +13,11 @@ export default function Resources() {
   const [currentCategory, setCurrentCategory] = React.useState('general')
 
   React.useEffect(() => {
-    fetch('http://localhost:3001/resources').then(res => res.json()).then(data => {
+    fetch('https://gfsscs-website-backend.onrender.com/resources').then(res => res.json()).then(data => {
       data.sort((a, b) => a.priority - b.priority)
       setResources(data)
     })
-    fetch('http://localhost:3001/categories/resources').then(res => res.json()).then(data => {
+    fetch('https://gfsscs-website-backend.onrender.com/categories/resources').then(res => res.json()).then(data => {
       setCategories(data[0].categories)
     })
   }, [])
@@ -31,7 +31,7 @@ export default function Resources() {
 
         <div className="flex mt-6">
           <div className="px-6 w-1/4 flex-col">
-            {Object.keys(categories).length && Object.keys(categories).map((category, index) => (
+            {Object.keys(categories).length ? Object.keys(categories).map((category, index) => (
 
               <div key={index} className="mb-8 w-3/5 flex flex-col items-center text-white hover:text-gold transition-all duration-200 cursor-pointer" onClick={() => {
                 setCurrentCategory(category)
@@ -47,27 +47,27 @@ export default function Resources() {
 
               </div>
 
-            ))}
+            )) : ''}
 
           </div>
           <div className="px-6 w-3/4 flex-col">
-            {Object.keys(categories).length && resources.length && Object.keys(categories[currentCategory].subcategories).map((subcategory, index) => (
+            {Object.keys(categories).length && resources.length ? Object.keys(categories[currentCategory].subcategories).map((subcategory, index) => (
               <div className="mt-6 p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index}>
                 <h1 className="text-3xl text-white font-mono font-bold">{categories[currentCategory].subcategories[subcategory]}</h1>
                 
                 <ul className="mt-4 ml-6 list-disc">
-                  {resources.length && resources.map(resource => {
+                  {resources.map(resource => {
                     if(resource['category'] === currentCategory && resource['subcategory'] === subcategory) {
                       return (
                         <li key={resource['_id']} className="text-1xl text-white font-sans leading-loose tracking-wide">
-                          <b><a href={resource['url']} className="underline hover:text-gold transition-all duration-200">{resource['name']}</a></b>: {resource['description']}
+                          <b><a href={resource['url']} target="_blank" className="underline hover:text-gold transition-all duration-200">{resource['name']}</a></b>: {resource['description']}
                         </li>
                       )
                     }
                   })}
                 </ul>
               </div>
-            ))}
+            )) : ''}
           </div>
         </div>
       </div>

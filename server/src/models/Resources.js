@@ -5,6 +5,7 @@ const ResourceSchema = new mongoose.Schema({
   url: String,
   description: String,
   category: String, 
+  subcategory: String,
   priority: Number
 });
 

@@ -1,6 +1,6 @@
 export default async function UpcomingEvents() {
   // get all events and sort by date
-  let events = await (await fetch('http://localhost:3001/events', {cache: 'no-store'})).json()
+  let events = await (await fetch('https://gfsscs-website-backend.onrender.com/events', {cache: 'no-store'})).json()
   events.sort((a, b) => {
     return (new Date(a.date)).getTime() - (new Date(b.date)).getTime()
   })
