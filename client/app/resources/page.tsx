@@ -13,14 +13,14 @@ export default function Resources() {
   const [currentCategory, setCurrentCategory] = React.useState('general')
 
   React.useEffect(() => {
-    fetch('https://gfsscs-website-backend.onrender.com/resources').then(res => res.json()).then(data => {
+    fetch('https://gfsscs-website-backend.onrender.com/resources', {cache: 'no-store'}).then(res => res.json()).then(data => {
       console.log(data)
       setResources(data)
     })
-    fetch('https://gfsscs-website-backend.onrender.com/categories/resources').then(res => res.json()).then(data => {
+    fetch('https://gfsscs-website-backend.onrender.com/categories/resources', {cache: 'no-store'}).then(res => res.json()).then(data => {
       setCategories(data[0].categories)
     })
-  }, [])
+  }, []) // TODO: refactor into separate components
   
   return (
     <div>
@@ -29,7 +29,7 @@ export default function Resources() {
       <div className="pt-8 pb-16 px-15vw">
         <h1 className="text-4xl text-center text-white font-mono"><b className="text-gold">Learning</b> Resources</h1>
 
-        <div className="flex mt-6">
+        <div className="flex mt-8">
           <div className="px-6 w-1/4 flex-col">
             {Object.keys(categories).length ? Object.keys(categories).map((category, index) => (
 
@@ -52,7 +52,7 @@ export default function Resources() {
           </div>
           <div className="px-6 w-3/4 flex-col">
             {Object.keys(categories).length && resources.length ? Object.keys(categories[currentCategory].subcategories).map((subcategory, index) => (
-              <div className="mt-6 p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index}>
+              <div className="mb-6 p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index}>
                 <h1 className="text-3xl text-white font-mono font-bold">{categories[currentCategory].subcategories[subcategory]}</h1>
                 
                 <ul className="mt-4 ml-6 list-disc">
