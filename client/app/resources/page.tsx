@@ -14,7 +14,7 @@ export default function Resources() {
 
   React.useEffect(() => {
     fetch('https://gfsscs-website-backend.onrender.com/resources').then(res => res.json()).then(data => {
-      data.sort((a, b) => a.priority - b.priority)
+      console.log(data)
       setResources(data)
     })
     fetch('https://gfsscs-website-backend.onrender.com/categories/resources').then(res => res.json()).then(data => {

@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const response = await ResourceModel.find();
-    res.json(req);
+    const response = await ResourceModel.find({});
+    res.json(response);
   } catch (err) {
     res.json(err);
   }

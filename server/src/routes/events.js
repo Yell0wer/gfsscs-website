@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   try {
     const response = await EventModel.find({});
-    res.status(200).json(response);
+    res.json(response);
   } catch (err) {
     res.json(err);
   }
