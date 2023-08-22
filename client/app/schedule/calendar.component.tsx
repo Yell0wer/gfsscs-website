@@ -5,7 +5,8 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 
 export default function Calendar({ setFocusedEvent }) {
 
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
   const [events, setEvents] = React.useState([])
 
@@ -43,9 +44,14 @@ export default function Calendar({ setFocusedEvent }) {
   function renderCalendar() {
     const cal : React.JSX.Element[] = []
     let key = 0;
+    for(let i = 0; i < 7; i++, key++) cal.push(
+      <div key={key} className="mb-2 p-2 w-[calc(14%-3.5px)] h-12 bg-black flex justify-center items-center">
+        <h1 className="text-white font-mono">{dayNames[i]}</h1>
+      </div>
+    )
     for(let i = 1; i <= getFirstDay(); i++, key++) cal.push(Day(0, false, key))
     for(let i = 1; i <= getNumDays(); i++, key++) cal.push(Day(i, true, key))
-    for(let i = 1; i <= 42 - getFirstDay() - getNumDays(); i++, key++) cal.push(Day(0, false, key))
+    for(let i = 1; i <= (getFirstDay() + getNumDays() > 35 ? 42 : 35) - getFirstDay() - getNumDays(); i++, key++) cal.push(Day(0, false, key))
     setCalendar(cal)
   }
   function prevMonth() {

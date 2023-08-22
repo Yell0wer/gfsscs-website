@@ -2,7 +2,7 @@ import { FaDiscord, FaInstagram } from "react-icons/fa6";
 
 export default function Hero() {
   return (
-    <div className="px-15vw h-70vh flex flex-col justify-center gap-8">
+    <div className="px-15vw h-60vh bg-cover flex flex-col justify-center gap-8">
       <h1 className="text-6xl text-white font-mono">
         <b className="text-gold">Glenforest S.S.</b>
         <br />

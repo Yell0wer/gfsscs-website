@@ -1,11 +1,13 @@
 'use client'
 import React from 'react'
+import { motion } from 'framer-motion'
 import clsx from "clsx";
 import Image from 'next/image'
 import Nav from '@/app/nav.component'
 import Footer from '@/app/footer.component'
 import FolderClose from '@/public/folderclose.png'
 import FolderOpen from '@/public/folderopen.png'
+import { growIn, slideInDown } from '@/app/general.animations'
 
 export default function Resources() {
   const [categories, setCategories] = React.useState({})
@@ -28,9 +30,9 @@ export default function Resources() {
       <Nav page="/resources" />
 
       <div className="pt-8 pb-16 px-15vw">
-        <h1 className="text-4xl text-center text-white font-mono"><b className="text-gold">Learning</b> Resources</h1>
+        <motion.h1 className="text-4xl text-center text-white font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Learning</b> Resources</motion.h1>
 
-        <div className="flex mt-8">
+        <div className="flex mt-10">
           <div className="px-6 w-1/4 flex-col">
             {Object.keys(categories).length ? Object.keys(categories).map((category, index) => (
 
@@ -49,27 +51,29 @@ export default function Resources() {
               </div>
 
             )) : ''}
-
           </div>
-          <div className="px-6 w-3/4 flex-col">
-            {Object.keys(categories).length && resources.length ? Object.keys(categories[currentCategory].subcategories).map((subcategory, index) => (
-              <div className="mb-6 p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index}>
-                <h1 className="text-3xl text-white font-mono font-bold">{categories[currentCategory].subcategories[subcategory]}</h1>
-                
-                <ul className="mt-4 ml-6 list-disc">
-                  {resources.map(resource => {
-                    if(resource['category'] === currentCategory && resource['subcategory'] === subcategory) {
-                      return (
-                        <li key={resource['_id']} className="text-1xl text-white font-sans leading-loose tracking-wide">
-                          <b><a href={resource['url']} target="_blank" className="underline hover:text-gold transition-all duration-200">{resource['name']}</a></b>: {resource['description']}
-                        </li>
-                      )
-                    }
-                  })}
-                </ul>
-              </div>
-            )) : ''}
-          </div>
+          
+          {Object.keys(categories).length && resources.length ? 
+            <motion.div key={currentCategory} className="px-6 w-3/4 flex-col" variants={growIn} initial="hidden" animate="visible">
+              {Object.keys(categories[currentCategory].subcategories).map((subcategory, index) => (
+                <motion.div className="mb-6 p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index} variants={growIn}>
+                  <h1 className="text-3xl text-white font-mono font-bold">{categories[currentCategory].subcategories[subcategory]}</h1>
+                  
+                  <ul className="mt-4 ml-6 list-disc">
+                    {resources.map(resource => {
+                      if(resource['category'] === currentCategory && resource['subcategory'] === subcategory) {
+                        return (
+                          <li key={resource['_id']} className="text-1xl text-white font-sans leading-loose tracking-wide">
+                            <b><a href={resource['url']} target="_blank" className="underline hover:text-gold transition-all duration-200">{resource['name']}</a></b>: {resource['description']}
+                          </li>
+                        )
+                      }
+                    })}
+                  </ul>
+                </motion.div>
+              ))}
+            </motion.div>
+          : ''}
         </div>
       </div>
 
