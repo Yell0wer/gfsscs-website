@@ -3,7 +3,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 
-export default function Calendar() {
+export default function Calendar({ setFocusedEvent }) {
 
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -32,7 +32,7 @@ export default function Calendar() {
             'px-2 py-1 w-fit bg-medium rounded-full': (new Date(year, month, day)).toDateString() === (new Date()).toDateString()
           })}>{day}</h1>
           {events.map(event => ((new Date(year, month, day)).toDateString() === (new Date(event['date'])).toDateString() ?
-            (<h1 className="mt-1 px-2 py-1.5 bg-dark text-xs rounded-md">
+            (<h1 key={event['_id']} className="mt-1 px-2 py-1.5 bg-dark text-xs rounded-md cursor-pointer" onClick={() => setFocusedEvent(event)}>
               {event['name']}
             </h1>)
           : '' ))}
