@@ -13,7 +13,7 @@ const bgFadeIn = {
 
 export default function EventOverlay({ focusedEvent, setFocusedEvent }) {
   return (
-    <div className="fixed w-screen h-screen flex justify-center items-center">
+    <div className="z-50 fixed w-screen h-screen flex justify-center items-center">
       <motion.div className="p-8 w-[33vw] bg-medium text-white border-4 border-light" variants={growIn} initial="hidden" animate="visible">
         <div className="flex justify-between items-center">
           <h1 className="text-2xl font-mono"><b>{focusedEvent.name}</b></h1>
@@ -24,7 +24,7 @@ export default function EventOverlay({ focusedEvent, setFocusedEvent }) {
           {focusedEvent.description}
         </p>
       </motion.div>
-      <motion.div className="absolute -z-50 top-0 left-0 w-screen h-screen bg-black opacity-80" onClick={() => setFocusedEvent({})} variants={bgFadeIn} initial="hidden" animate="visible" />
+      <motion.div className="absolute -z-10 top-0 left-0 w-screen h-screen bg-black opacity-80" onClick={() => setFocusedEvent({})} variants={bgFadeIn} initial="hidden" animate="visible" />
     </div>
   )
 }

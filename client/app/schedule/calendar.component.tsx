@@ -1,7 +1,36 @@
 'use client'
 import React from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
+import { slideInLeft, slideInRight, slideInDown } from '@/app/general.animations'
+
+const swipeVariants = {
+  enter: direction => {
+    return {
+      scale: 0.8,
+      opacity: 0
+    }
+  },
+  center: {
+    x: 0,
+    scale: 1,
+    opacity: 1,
+    transition: {
+      delay: 0.2,
+      duration: 0.3
+    }
+  },
+  exit: direction => {
+    return {
+      x: (direction < 0 ? 200 : -200),
+      opacity: 0,
+      transition: {
+        duration: 0.3
+      }
+    }
+  }
+}
 
 export default function Calendar({ setFocusedEvent }) {
 
@@ -11,7 +40,7 @@ export default function Calendar({ setFocusedEvent }) {
   const [events, setEvents] = React.useState([])
 
   const [year, setYear] = React.useState((new Date()).getFullYear())
-  const [month, setMonth] = React.useState((new Date()).getMonth())
+  const [[month, direction], setMonth] = React.useState([(new Date()).getMonth(), 0])
 
   const [calendar, setCalendar] = React.useState(new Array())
 
@@ -56,16 +85,16 @@ export default function Calendar({ setFocusedEvent }) {
   }
   function prevMonth() {
     if(month === 0) {
-      setMonth(11)
+      setMonth([11, -1])
       setYear(year - 1)
-    } else setMonth(month - 1)
+    } else setMonth([month - 1, -1])
     renderCalendar()
   }
   function nextMonth() {
     if(month === 11) {
-      setMonth(0)
+      setMonth([0, 1])
       setYear(year + 1)
-    } else setMonth(month + 1)
+    } else setMonth([month + 1, 1])
     renderCalendar()
   }
 
@@ -74,18 +103,52 @@ export default function Calendar({ setFocusedEvent }) {
       setEvents(data)
       renderCalendar()
     })
-  }, [events])
+  })
 
   return (
-    <div className="my-8 w-full">
-      <div className="flex justify-between items-center">
-        <button onClick={prevMonth} className="px-4 py-1 bg-medium text-white hover:text-gold hover:bg-dark border-4 border-light hover:border-gold transition-all duration-200"><FaAngleLeft /></button>
-        <h1 className="text-3xl text-white">{monthNames[month]} {year}</h1>
-        <button onClick={nextMonth} className="px-4 py-1 bg-medium text-white hover:text-gold hover:bg-dark border-4 border-light hover:border-gold transition-all duration-200"><FaAngleRight /></button>
-      </div>
-      <div className="mt-6 p-2 pb-0 w-full bg-medium flex flex-wrap justify-between">
-        {calendar}
-      </div>
+    <div className="z-0 w-full">
+      {events.length ?
+        <div className="my-8 w-full">
+          <div className="w-full flex justify-between items-center">
+            <motion.button onClick={prevMonth} className="px-4 py-1 bg-medium text-white hover:text-gold hover:bg-dark border-4 border-light hover:border-gold transition-text hover:duration-200" variants={slideInLeft} initial="hidden" animate="visible">
+              <FaAngleLeft />
+            </motion.button>
+
+            <div className="flex items-center">
+              <AnimatePresence custom={direction}>
+                <motion.h1 
+                key={month}
+                custom={direction}
+                variants={swipeVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="absolute left-96 right-96 text-3xl text-white text-center">
+                  {monthNames[month]} {year}
+                </motion.h1>
+              </AnimatePresence>
+            </div>
+
+            <motion.button onClick={nextMonth} className="px-4 py-1 bg-medium text-white hover:text-gold hover:bg-dark border-4 border-light hover:border-gold transition-text hover:duration-200" variants={slideInRight} initial="hidden" animate="visible">
+              <FaAngleRight />
+            </motion.button>
+          </div>
+
+          <AnimatePresence custom={direction}>
+            <motion.div
+            key={month}
+            custom={direction}
+            variants={swipeVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="mt-6 p-2 pb-0 absolute left-15vw right-15vw bg-medium flex flex-wrap justify-between">
+              {calendar}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      : ''}
+      <div className="h-[calc(7rem*7)]" />
     </div>
   )
 }

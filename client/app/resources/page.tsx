@@ -33,25 +33,30 @@ export default function Resources() {
         <motion.h1 className="text-4xl text-center text-white font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Learning</b> Resources</motion.h1>
 
         <div className="flex mt-10">
-          <div className="px-6 w-1/4 flex-col">
-            {Object.keys(categories).length ? Object.keys(categories).map((category, index) => (
+            {Object.keys(categories).length ? 
+            
+              <motion.div className="px-6 w-1/4 flex flex-col" variants={slideInDown} initial="hidden" animate="visible">
+                {Object.keys(categories).map((category, index) => (
 
-              <div key={index} className="mb-8 w-3/5 flex flex-col items-center text-white hover:text-gold transition-all duration-200 cursor-pointer" onClick={() => {
-                setCurrentCategory(category)
-              }}>
-                {category === currentCategory ? <Image src={FolderOpen} alt="open folder" /> : <Image src={FolderClose} alt="closed folder" />}
+                  <motion.div key={index} className="mb-8 w-3/5 flex flex-col items-center text-white hover:text-gold transition-text hover:duration-200 cursor-pointer" variants={slideInDown} onClick={() => {
+                    setCurrentCategory(category)
+                  }}>
+                    {category === currentCategory ? <Image src={FolderOpen} alt="open folder" /> : <Image src={FolderClose} alt="closed folder" />}
 
-                <h1 className={clsx(
-                  "text-1xl text-center font-mono",
-                  {
-                    "text-gold": category === currentCategory,
-                  }
-                )}>{categories[category].name}</h1>
+                    <h1 className={clsx(
+                      "text-1xl text-center font-mono",
+                      {
+                        "text-gold": category === currentCategory,
+                      }
+                    )}>{categories[category].name}</h1>
 
-              </div>
+                  </motion.div>
 
-            )) : ''}
-          </div>
+                ))}
+              </motion.div>
+
+            : 
+            <div className="h-screen" />}
           
           {Object.keys(categories).length && resources.length ? 
             <motion.div key={currentCategory} className="px-6 w-3/4 flex-col" variants={growIn} initial="hidden" animate="visible">

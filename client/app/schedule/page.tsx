@@ -14,14 +14,16 @@ export default function Schedule() {
   return (
     <div>
       {focusedEvent.hasOwnProperty('name') ? <EventOverlay focusedEvent={focusedEvent} setFocusedEvent={setFocusedEvent} /> : ''}
+      
       <Nav page="/schedule" />
 
-      <div className="my-10 px-15vw flex flex-col items-center">
+      <div className="relative my-10 px-15vw flex flex-col items-center">
         <motion.h1 className="text-4xl text-center font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Schedule</b></motion.h1>
         <Calendar setFocusedEvent={setFocusedEvent} />
       </div>
-
+      
       <Footer />
+      
     </div>
   )
 }
