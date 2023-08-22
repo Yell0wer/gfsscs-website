@@ -12,7 +12,7 @@ export default function Calendar({ setFocusedEvent }) {
   const [year, setYear] = React.useState((new Date()).getFullYear())
   const [month, setMonth] = React.useState((new Date()).getMonth())
 
-  const [calendar, setCalendar] = React.useState([<div />])
+  const [calendar, setCalendar] = React.useState(new Array())
 
   React.useEffect(() => {
     fetch('https://gfsscs-website-backend.onrender.com/events', {'cache': 'no-store'}).then(res => res.json()).then(data => {
@@ -27,19 +27,23 @@ export default function Calendar({ setFocusedEvent }) {
   function Day(day, isActive, key) {
     if(isActive) {
       return (
-        <div className="mb-2 p-2 w-[calc(14%-3.5px)] h-28 bg-light font-mono text-white">
+        <div key={key} className="mb-2 p-2 w-[calc(14%-3.5px)] h-28 bg-light font-mono text-white">
           <h1 className={clsx({
             'px-2 py-1 w-fit bg-medium rounded-full': (new Date(year, month, day)).toDateString() === (new Date()).toDateString()
           })}>{day}</h1>
           {events.map(event => ((new Date(year, month, day)).toDateString() === (new Date(event['date'])).toDateString() ?
-            (<h1 key={event['_id']} className="mt-1 px-2 py-1.5 bg-dark text-xs rounded-md cursor-pointer" onClick={() => setFocusedEvent(event)}>
+            (<h1 key={event['_id']} className={clsx('mt-1 px-2 py-1.5 text-xs rounded-md cursor-pointer border-2 border-white', {
+              'bg-medium': event['type'] === 'meeting',
+              'bg-dark': event['type'] === 'lesson',
+              'bg-gold': event['type'] === 'contest' || event['type'] === 'other'
+            })} onClick={() => setFocusedEvent(event)}>
               {event['name']}
             </h1>)
           : '' ))}
         </div>
       )
     } else {
-      return (<div className="mb-2 w-[calc(14%-3.5px)] h-28 bg-dark" />)
+      return (<div key={key} className="mb-2 w-[calc(14%-3.5px)] h-28 bg-dark" />)
     }
   }
 
