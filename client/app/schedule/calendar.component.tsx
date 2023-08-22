@@ -14,13 +14,6 @@ export default function Calendar({ setFocusedEvent }) {
 
   const [calendar, setCalendar] = React.useState(new Array())
 
-  React.useEffect(() => {
-    fetch('https://gfsscs-website-backend.onrender.com/events', {'cache': 'no-store'}).then(res => res.json()).then(data => {
-      setEvents(data)
-      renderCalendar()
-    })
-  }, [events])
-
   const getNumDays = () => (new Date(year, month + 1, 0)).getDate()
   const getFirstDay = () => (new Date(year, month, 1)).getDay()
 
@@ -69,6 +62,13 @@ export default function Calendar({ setFocusedEvent }) {
     } else setMonth(month + 1)
     renderCalendar()
   }
+
+  React.useEffect(() => {
+    fetch('https://gfsscs-website-backend.onrender.com/events', {'cache': 'no-store'}).then(res => res.json()).then(data => {
+      setEvents(data)
+      renderCalendar()
+    })
+  }, [events])
 
   return (
     <div className="my-8 w-full">
