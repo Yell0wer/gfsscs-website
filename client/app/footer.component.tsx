@@ -2,7 +2,7 @@ import { FaDiscord, FaInstagram } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <div className="px-15vw py-10 flex flex-col md:flex-row justify-between bg-black">
+    <div className="px-6 md:px-15vw  py-10 flex flex-col md:flex-row justify-between bg-black">
       <h1 className="text-sm/loose md:text-base/loose text-white font-sans leading-loose tracking-wide">
         Open Rooms on Tuesdays and Thursdays in room 200
         <br />
