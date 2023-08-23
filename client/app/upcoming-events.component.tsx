@@ -29,7 +29,7 @@ export default function UpcomingEvents() {
       {events.length ?
         <motion.div className="flex flex-col" variants={growIn} initial="hidden" whileInView="visible" viewport={{once: true}}>
           {events.map((event, i) => (
-            <motion.div key={event['_id']} className="mt-6 p-6 sm:p-8 flex flex-col bg-[url(../public/bgupcomingevent1.png)] bg-cover bg-center border-solid border-4 border-light" variants={growIn}>
+            <motion.div key={event['_id']} className="mt-6 p-6 sm:p-8 flex flex-col bg-medium border-solid border-4 border-light" variants={growIn}>
               <div className="flex flex-col lg:flex-row justify-between lg:items-center">
                 <h1 className="text-2xl md:text-3xl text-white font-mono font-bold">{event['name']}</h1>
                 <h1 className="mt-2 text-sm md:text-base text-white font-mono">{(new Date(event['date'])).toDateString()}</h1>
