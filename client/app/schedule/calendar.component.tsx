@@ -3,7 +3,7 @@ import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import clsx from 'clsx'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
-import { slideInLeft, slideInRight, slideInDown } from '@/app/general.animations'
+import { slideInLeft, slideInRight } from '@/app/general.animations'
 
 const swipeVariants = {
   enter: {
@@ -36,7 +36,7 @@ export default function Calendar({ setFocusedEvent }) {
   const [events, setEvents] = React.useState([])
 
   const [year, setYear] = React.useState((new Date()).getFullYear())
-  const [[month, direction], setMonth] = React.useState([(new Date()).getMonth(), 0])
+  const [month, setMonth] = React.useState((new Date()).getMonth())
 
   const [calendar, setCalendar] = React.useState(new Array())
 
@@ -48,7 +48,7 @@ export default function Calendar({ setFocusedEvent }) {
       return (
         <div key={key} className="mb-2 p-2 w-[calc(14%-2px)] h-28 bg-light text-xs md:text-base text-white font-mono">
           <h1 className={clsx({
-            'px-2 py-1 w-fit bg-medium rounded-full': (new Date(year, month, day)).toDateString() === (new Date()).toDateString()
+            '-ml-1 -mt-1 px-1 sm:px-2 py-1 w-fit bg-medium rounded-full': (new Date(year, month, day)).toDateString() === (new Date()).toDateString(),
           })}>{day}</h1>
           {events.map(event => ((new Date(year, month, day)).toDateString() === (new Date(event['date'])).toDateString() ?
             (window.innerWidth < 640 ? 
@@ -88,16 +88,16 @@ export default function Calendar({ setFocusedEvent }) {
   }
   function prevMonth() {
     if(month === 0) {
-      setMonth([11, -1])
+      setMonth(11)
       setYear(year - 1)
-    } else setMonth([month - 1, -1])
+    } else setMonth(month - 1)
     renderCalendar()
   }
   function nextMonth() {
     if(month === 11) {
-      setMonth([0, 1])
+      setMonth(0)
       setYear(year + 1)
-    } else setMonth([month + 1, 1])
+    } else setMonth(month + 1)
     renderCalendar()
   }
 
