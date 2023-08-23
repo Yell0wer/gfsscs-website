@@ -18,15 +18,15 @@ export default function EventOverlay({ focusedEvent, setFocusedEvent }) {
     <div className="z-50 fixed w-screen h-screen flex justify-center items-center">
       <motion.div className="p-8 w-4/5 md:w-1/3 bg-medium text-white border-4 border-light" variants={growIn} initial="hidden" animate="visible" exit="hidden">
         <div className="flex justify-between items-center gap-6">
-          <h1 className="text-2xl md:text-3xl font-mono"><b>{focusedEvent.name}</b></h1>
+          <h1 className="text-2xl lg:text-3xl font-mono"><b>{focusedEvent.name}</b></h1>
           {window.innerWidth >= 640 ? 
             <button className="px-1 py-1 bg-medium text-white hover:text-gold hover:bg-dark border-4 border-light hover:border-gold transition-all duration-200" onClick={() => setFocusedEvent({})}>
               <FaXmark />
             </button>
           : ''}
         </div>
-        <h2 className="mt-3 text-sm md:text-base font-mono">{(new Date(focusedEvent.date)).toLocaleString()}</h2>
-        <p className="mt-3 text-sm md:text-base text-white font-sans leading-relaxed tracking-wide">
+        <h2 className="mt-3 text-sm lg:text-base font-mono">{(new Date(focusedEvent.date)).toLocaleString()}</h2>
+        <p className="mt-3 text-sm lg:text-base text-white font-sans leading-relaxed tracking-wide">
           {focusedEvent.description}
         </p>
       </motion.div>

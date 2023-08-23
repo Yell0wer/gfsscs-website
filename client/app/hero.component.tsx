@@ -5,7 +5,7 @@ import { growIn, slideInLeftSlow, slideInDownSlow } from '@/app/general.animatio
 
 export default function Hero() {
   return (
-    <div className="px-4 md:px-15vw h-60vh bg-dark bg-no-repeat [background-image:url('../public/circuit1.png'),url('../public/circuit2.png')] [background-position:bottom_left,center_right] flex flex-col justify-center gap-8" >
+    <div className="px-4 md:px-15vw h-60vh bg-dark bg-no-repeat [background-image:url('../public/circuit1.png'),url('../public/circuit2.png')] [background-position:left_90%,right_center] [background-size:45vw,80vw] md:[background-size:30vw,70vw] flex flex-col justify-center gap-8" >
       <motion.div className="text-4xl lg:text-6xl text-center md:text-left text-white font-mono tracking-tight" variants={slideInDownSlow} initial="hidden" whileInView="visible" viewport={{once: true}}>
         <motion.h1 className="text-gold font-bold" variants={slideInDownSlow}>Glenforest S.S.</motion.h1>
         <motion.h1 className="mt-4" variants={slideInDownSlow}>Computer Science</motion.h1>

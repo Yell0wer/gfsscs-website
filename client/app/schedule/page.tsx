@@ -12,7 +12,7 @@ export default function Schedule() {
   const [focusedEvent, setFocusedEvent] = React.useState({})
 
   return (
-    <div>
+    <div className="bg-dark bg-no-repeat lg:[background-image:url('../public/circuit3.png'),url('../public/circuit5.png'),url('../public/circuit7.png')] [background-position:left_20rem,right_50rem,left_50rem]">
       <AnimatePresence>
       {focusedEvent.hasOwnProperty('name') ? <EventOverlay focusedEvent={focusedEvent} setFocusedEvent={setFocusedEvent} /> : ''}
       </AnimatePresence>
@@ -20,7 +20,7 @@ export default function Schedule() {
       <Nav page="/schedule" />
 
       <div className="relative my-10 px-6 md:px-15vw flex flex-col items-center">
-        <motion.h1 className="text-3xl md:text-4xl text-center font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Schedule</b></motion.h1>
+        <motion.h1 className="text-3xl lg:text-4xl text-center font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Schedule</b></motion.h1>
         <Calendar setFocusedEvent={setFocusedEvent} />
       </div>
       

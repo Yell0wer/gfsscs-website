@@ -29,8 +29,8 @@ export default function Resources() {
     <div>
       <Nav page="/resources" />
 
-      <div className="pt-8 pb-16 px-6 md:px-15vw">
-        <motion.h1 className="text-3xl md:text-4xl text-center text-white font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Learning</b> Resources</motion.h1>
+      <div className="pt-8 pb-16 px-6 md:px-15vw bg-dark bg-no-repeat lg:[background-image:url('../public/circuit4.png'),url('../public/circuit6.png'),url('../public/circuit8.png')] [background-position:right_top,right_40rem,left_20rem]">
+        <motion.h1 className="text-3xl lg:text-4xl text-center text-white font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Learning</b> Resources</motion.h1>
 
         <div className="flex flex-col lg:flex-row mt-10">
             {Object.keys(categories).length ? 
@@ -44,7 +44,7 @@ export default function Resources() {
                     {category === currentCategory ? <Image src={FolderOpen} alt="open folder" /> : <Image src={FolderClose} alt="closed folder" />}
 
                     <h1 className={clsx(
-                      "text-sm md:text-base text-center font-mono",
+                      "text-sm lg:text-base text-center font-mono",
                       {
                         "text-gold": category === currentCategory,
                       }
@@ -62,13 +62,13 @@ export default function Resources() {
             <motion.div key={currentCategory} className="px-6 lg:w-3/4 flex-col" variants={growIn} initial="hidden" animate="visible">
               {Object.keys(categories[currentCategory].subcategories).map((subcategory, index) => (
                 <motion.div className="mb-6 p-6 md:p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index} variants={growIn}>
-                  <h1 className="text-2xl md:text-3xl text-white font-mono font-bold break-words">{categories[currentCategory].subcategories[subcategory]}</h1>
+                  <h1 className="text-2xl lg:text-3xl text-white font-mono font-bold break-words">{categories[currentCategory].subcategories[subcategory]}</h1>
                   
                   <ul className="mt-4 ml-6 list-disc">
                     {resources.map(resource => {
                       if(resource['category'] === currentCategory && resource['subcategory'] === subcategory) {
                         return (
-                          <li key={resource['_id']} className="text-sm/loose md:text-base/loose text-white font-sans leading-loose tracking-wide">
+                          <li key={resource['_id']} className="text-sm/loose lg:text-base/loose text-white font-sans leading-loose tracking-wide">
                             <b><a href={resource['url']} target="_blank" className="underline hover:text-gold transition-all duration-200">{resource['name']}</a></b>: {resource['description']}
                           </li>
                         )

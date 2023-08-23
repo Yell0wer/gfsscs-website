@@ -125,7 +125,7 @@ export default function Calendar({ setFocusedEvent }) {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="absolute inset-x-1/3 text-2xl md:text-3xl text-white text-center">
+                className="absolute inset-x-1/3 text-2xl lg:text-3xl text-white text-center">
                   {window.innerWidth < 640 ? monthNames[month].substring(0, 3) : monthNames[month]} {window.innerWidth < 640 ? "'" + year % 100 : year}
                 </motion.h1>
               </AnimatePresence>
