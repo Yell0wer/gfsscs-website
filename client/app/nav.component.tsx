@@ -1,6 +1,7 @@
-import clsx from "clsx";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import clsx from 'clsx'
+import Link from 'next/link'
+import Image from 'next/image'
+import logo from '@/public/logo.png'
 
 const links = [
   {
@@ -14,24 +15,24 @@ const links = [
   {
     name: "schedule_",
     path: "/schedule",
-  },
-];
+  }
+]
 
 export default function Nav({ page }: { page: string }) {
   return (
-    <div className="px-15vw py-10 flex justify-between w-full items-center text-white">
-      <div>
-        <h1 className="text-2xl font-sans">GFSS</h1>
-      </div>
+    <div className="px-4 md:px-15vw py-8 flex w-full justify-center md:justify-between items-center bg-dark text-white">
+      <Link href="/" className="hidden md:inline">
+        <Image src={logo} height="100" alt="GFSSCS" />
+      </Link>
 
       <div className="flex gap-10">
         {links.map((link) => (
           <Link href={link.path} key={link.name}>
             <h1
               className={clsx(
-                "text-1xl font-mono hover:text-gold transition-all duration-200",
+                "text-sm md:text-base font-mono hover:text-gold transition-all duration-200",
                 {
-                  "text-gold": page === link.path,
+                  "text-gold": page === link.path
                 }
               )}
             >

@@ -1,10 +1,12 @@
 import mongoose from 'mongoose';
 
 const ResourceSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    url: { type: String, required: true },
-    description: { type: String, required: true },
-    priority: { type: Number, required: false }
+  name: String,
+  url: String,
+  description: String,
+  category: String, 
+  subcategory: String,
+  priority: Number
 });
 
-export default mongoose.model("resources", ResourceSchema);
+export default mongoose.model('resources', ResourceSchema);

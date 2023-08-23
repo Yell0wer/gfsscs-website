@@ -22,7 +22,8 @@ const config: Config = {
     extend: {
       spacing: {
         '15vw': '15vw',
-        '70vh': '70vh'
+        '60vh': '60vh',
+        '1/7': '13.5%'
       }
     }
   },
