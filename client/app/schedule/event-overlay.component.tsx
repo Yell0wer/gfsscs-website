@@ -20,9 +20,9 @@ export default function EventOverlay({ focusedEvent, setFocusedEvent }) {
         <div className="flex justify-between items-center gap-6">
           <h1 className="text-2xl md:text-3xl font-mono"><b>{focusedEvent.name}</b></h1>
           {window.innerWidth >= 640 ? 
-          <button className="px-1 py-1 bg-medium text-white hover:text-gold hover:bg-dark border-4 border-light hover:border-gold transition-all duration-200" onClick={() => setFocusedEvent({})}>
-            <FaXmark />
-          </button>
+            <button className="px-1 py-1 bg-medium text-white hover:text-gold hover:bg-dark border-4 border-light hover:border-gold transition-all duration-200" onClick={() => setFocusedEvent({})}>
+              <FaXmark />
+            </button>
           : ''}
         </div>
         <h2 className="mt-3 text-sm md:text-base font-mono">{(new Date(focusedEvent.date)).toLocaleString()}</h2>
