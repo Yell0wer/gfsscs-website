@@ -8,7 +8,7 @@ export default function UpcomingEvents() {
   const [events, setEvents] = React.useState([])
 
   React.useEffect(() => {
-    fetch('https://gfsscs-website-backend.onrender.com/events', {cache: 'no-store'}).then(res => res.json()).then(data => {
+    fetch('https://gfsscs-backend-9cb6722f7477.herokuapp.com/events', {cache: 'no-store'}).then(res => res.json()).then(data => {
       data.sort((a, b) => {
         return (new Date(a['date'])).getTime() - (new Date(b['date'])).getTime()
       })

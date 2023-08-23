@@ -11,7 +11,10 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async(req, res) => {
+router.post('/:pw', async(req, res) => {
+  if(req.params.pw != process.env.pw) {
+    res.status(404).send('Not found');
+  }
   try {
     const event = new EventModel(req.body);
     event.save().then(resource => {
@@ -22,7 +25,10 @@ router.post('/', async(req, res) => {
   }
 });
 
-router.delete('/:id', async(req, res) => {
+router.delete('/:id/:pw', async(req, res) => {
+  if(req.params.pw != process.env.pw) {
+    res.status(404).send('Not found');
+  }
   try {
     await EventModel.deleteOne({ _id: req.params.id });
     res.status(200).send('DELETE successful');

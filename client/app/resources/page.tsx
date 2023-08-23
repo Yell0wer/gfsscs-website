@@ -15,12 +15,12 @@ export default function Resources() {
   const [currentCategory, setCurrentCategory] = React.useState('general')
 
   React.useEffect(() => {
-    fetch('https://gfsscs-website-backend.onrender.com/resources', {cache: 'no-store'}).then(res => res.json()).then(data => {
+    fetch('https://gfsscs-backend-9cb6722f7477.herokuapp.com/resources', {cache: 'no-store'}).then(res => res.json()).then(data => {
       data.sort((a, b) => a.priority - b.priority)
       console.log(data)
       setResources(data)
     })
-    fetch('https://gfsscs-website-backend.onrender.com/categories/resources', {cache: 'no-store'}).then(res => res.json()).then(data => {
+    fetch('https://gfsscs-backend-9cb6722f7477.herokuapp.com/categories/resources', {cache: 'no-store'}).then(res => res.json()).then(data => {
       setCategories(data[0].categories)
     })
   }, []) // TODO: refactor into separate components
