@@ -29,22 +29,22 @@ export default function Resources() {
     <div>
       <Nav page="/resources" />
 
-      <div className="pt-8 pb-16 px-15vw">
-        <motion.h1 className="text-4xl text-center text-white font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Learning</b> Resources</motion.h1>
+      <div className="pt-8 pb-16 px-6 md:px-15vw">
+        <motion.h1 className="text-3xl md:text-4xl text-center text-white font-mono" variants={slideInDown} initial="hidden" animate="visible"><b className="text-gold">Learning</b> Resources</motion.h1>
 
-        <div className="flex mt-10">
+        <div className="flex flex-col lg:flex-row mt-10">
             {Object.keys(categories).length ? 
             
-              <motion.div className="px-6 w-1/4 flex flex-col" variants={slideInDown} initial="hidden" animate="visible">
+              <motion.div className="mb-8 px-6 lg:w-1/4 flex flex-wrap flex-row lg:flex-col justify-center lg:justify-start items-center gap-8" variants={slideInDown} initial="hidden" animate="visible">
                 {Object.keys(categories).map((category, index) => (
 
-                  <motion.div key={index} className="mb-8 w-3/5 flex flex-col items-center text-white hover:text-gold transition-text hover:duration-200 cursor-pointer" variants={slideInDown} onClick={() => {
+                  <motion.div key={index} className="w-2/5 sm:w-1/5 lg:w-4/5 xl:w-3/5 flex flex-col items-center text-white hover:text-gold transition-text hover:duration-200 cursor-pointer" variants={slideInDown} onClick={() => {
                     setCurrentCategory(category)
                   }}>
                     {category === currentCategory ? <Image src={FolderOpen} alt="open folder" /> : <Image src={FolderClose} alt="closed folder" />}
 
                     <h1 className={clsx(
-                      "text-1xl text-center font-mono",
+                      "text-sm md:text-base text-center font-mono",
                       {
                         "text-gold": category === currentCategory,
                       }
@@ -59,16 +59,16 @@ export default function Resources() {
             <div className="h-screen" />}
           
           {Object.keys(categories).length && resources.length ? 
-            <motion.div key={currentCategory} className="px-6 w-3/4 flex-col" variants={growIn} initial="hidden" animate="visible">
+            <motion.div key={currentCategory} className="px-6 lg:w-3/4 flex-col" variants={growIn} initial="hidden" animate="visible">
               {Object.keys(categories[currentCategory].subcategories).map((subcategory, index) => (
-                <motion.div className="mb-6 p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index} variants={growIn}>
-                  <h1 className="text-3xl text-white font-mono font-bold">{categories[currentCategory].subcategories[subcategory]}</h1>
+                <motion.div className="mb-6 p-6 md:p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index} variants={growIn}>
+                  <h1 className="text-2xl md:text-3xl text-white font-mono font-bold">{categories[currentCategory].subcategories[subcategory]}</h1>
                   
                   <ul className="mt-4 ml-6 list-disc">
                     {resources.map(resource => {
                       if(resource['category'] === currentCategory && resource['subcategory'] === subcategory) {
                         return (
-                          <li key={resource['_id']} className="text-1xl text-white font-sans leading-loose tracking-wide">
+                          <li key={resource['_id']} className="text-sm/loose md:text-base/loose text-white font-sans leading-loose tracking-wide">
                             <b><a href={resource['url']} target="_blank" className="underline hover:text-gold transition-all duration-200">{resource['name']}</a></b>: {resource['description']}
                           </li>
                         )

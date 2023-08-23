@@ -20,8 +20,8 @@ const links = [
 
 export default function Nav({ page }: { page: string }) {
   return (
-    <div className="px-15vw py-8 flex justify-between w-full items-center text-white">
-      <Link href="/">
+    <div className="px-4 md:px-15vw py-8 flex w-full justify-center md:justify-between items-center bg-dark text-white">
+      <Link href="/" className="hidden md:inline">
         <Image src={logo} height="100" alt="GFSSCS" />
       </Link>
 
@@ -30,7 +30,7 @@ export default function Nav({ page }: { page: string }) {
           <Link href={link.path} key={link.name}>
             <h1
               className={clsx(
-                "text-1xl font-mono hover:text-gold transition-all duration-200",
+                "text-sm md:text-base font-mono hover:text-gold transition-all duration-200",
                 {
                   "text-gold": page === link.path
                 }

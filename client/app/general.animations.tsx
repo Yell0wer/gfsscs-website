@@ -3,7 +3,9 @@ export const growIn = {
     staggerChildren: 0.3,
     duration: 0.6
   }},
-  hidden: {scale: 0.5, opacity: 0}
+  hidden: {scale: 0.5, opacity: 0, transition: {
+    duration: 0.6
+  }}
 }
 export const growInSlow = {
   visible: {scale: 1, opacity: 1, transition: { 

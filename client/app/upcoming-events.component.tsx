@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
-import { growIn, slideInLeft } from '@/app/general.animations'
+import { growIn, slideInDown } from '@/app/general.animations'
 
 export default function UpcomingEvents() {
 
@@ -23,18 +23,18 @@ export default function UpcomingEvents() {
   }, [])
 
   return (
-    <div className="px-15vw py-20">
-      <motion.h1 className="text-4xl text-white font-mono font-bold" variants={slideInLeft} initial="hidden" whileInView="visible" viewport={{once: true}}>Upcoming Events</motion.h1>
+    <div className="px-6 md:px-15vw py-20">
+      <motion.h1 className="text-3xl md:text-4xl text-white font-mono font-bold" variants={slideInDown} initial="hidden" whileInView="visible" viewport={{once: true}}>Upcoming Events</motion.h1>
       
       {events.length ?
         <motion.div className="flex flex-col" variants={growIn} initial="hidden" whileInView="visible" viewport={{once: true}}>
-          {events.map((event) => (
-            <motion.div key={event['_id']} className="mt-6 p-8 flex flex-col bg-medium border-solid border-4 border-light" variants={growIn}>
-              <div className="flex justify-between items-center">
-                <h1 className="text-3xl text-white font-mono font-bold">{event['name']}</h1>
-                <h1 className="text-1xl text-white font-mono">{(new Date(event['date'])).toDateString()}</h1>
+          {events.map((event, i) => (
+            <motion.div key={event['_id']} className="mt-6 p-6 sm:p-8 flex flex-col bg-[url(../public/bgupcomingevent1.png)] bg-cover bg-center border-solid border-4 border-light" variants={growIn}>
+              <div className="flex flex-col lg:flex-row justify-between lg:items-center">
+                <h1 className="text-2xl md:text-3xl text-white font-mono font-bold">{event['name']}</h1>
+                <h1 className="mt-2 text-sm md:text-base text-white font-mono">{(new Date(event['date'])).toDateString()}</h1>
               </div>
-              <p className="mt-2 text-1xl text-white text-justify font-sans leading-relaxed tracking-wide">{event['description']}</p>
+              <p className="mt-2 text-sm md:text-base text-white font-sans leading-relaxed tracking-wide">{event['description']}</p>
             </motion.div>
           ))}
         </motion.div>
