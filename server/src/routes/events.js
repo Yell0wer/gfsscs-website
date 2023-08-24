@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/:pw', async(req, res) => {
-  if(req.params.pw != process.env.pw) {
+  if(req.params.pw != process.env.PW) {
     res.status(404).send('Not found');
   } else {
     try {
@@ -27,7 +27,7 @@ router.post('/:pw', async(req, res) => {
 });
 
 router.delete('/:id/:pw', async(req, res) => {
-  if(req.params.pw != process.env.pw) {
+  if(req.params.pw != process.env.PW) {
     res.status(404).send('Not found');
   } else {
     try {
