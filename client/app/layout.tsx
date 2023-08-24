@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/logo1.png" type="image/png" sizes="any" />
+        <link rel="icon" href="/logo2.png" type="image/png" sizes="any" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet" />

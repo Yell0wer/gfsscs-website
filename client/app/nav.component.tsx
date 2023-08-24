@@ -22,7 +22,7 @@ export default function Nav({ page }: { page: string }) {
   return (
     <div className="px-4 md:px-15vw py-8 flex w-full justify-center md:justify-between items-center bg-dark text-white">
       <Link href="/" className="hidden md:inline">
-        <Image src={logo} height="110" alt="GFSSCS" />
+        <Image src={logo} height="80" alt="GFSSCS" />
       </Link>
 
       <div className="flex gap-10">
