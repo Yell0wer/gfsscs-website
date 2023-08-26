@@ -59,7 +59,7 @@ export default function Resources() {
             <div className="h-screen" />}
           
           {Object.keys(categories).length && resources.length ? 
-            <motion.div key={currentCategory} className="px-6 lg:w-3/4 flex-col" variants={growIn} initial="hidden" animate="visible">
+            <motion.div key={currentCategory} className="lg:w-3/4 flex-col" variants={growIn} initial="hidden" animate="visible">
               {Object.keys(categories[currentCategory].subcategories).map((subcategory, index) => (
                 <motion.div className="mb-6 p-6 md:p-8 flex flex-col bg-medium border-solid border-4 border-light" key={index} variants={growIn}>
                   <h1 className="text-2xl lg:text-3xl text-white font-mono font-bold break-words">{categories[currentCategory].subcategories[subcategory]}</h1>
