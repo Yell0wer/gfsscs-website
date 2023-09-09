@@ -35,20 +35,24 @@ export default function UpcomingEvents() {
             </div>
             <p className="mt-2 text-sm lg:text-base text-white font-sans leading-relaxed tracking-wide">{events[0]['description']}</p>
           </motion.div>
-          <motion.div className="mt-6 p-6 sm:p-8 flex flex-col bg-medium bg-no-repeat xl:[background-image:url('../public/circuitb3.png'),url('../public/circuitb4.png')] [background-position:60%_top,right_bottom] border-solid border-4 border-light" variants={growIn}>
-            <div className="flex flex-col lg:flex-row justify-between lg:items-center">
-              <h1 className="text-2xl lg:text-3xl text-white font-mono font-bold">{events[1]['name']}</h1>
-              <h1 className="mt-2 text-sm lg:text-base text-white font-mono">{(new Date(events[1]['date'])).toDateString()}</h1>
-            </div>
-            <p className="mt-2 text-sm lg:text-base text-white font-sans leading-relaxed tracking-wide">{events[1]['description']}</p>
-          </motion.div>
-          <motion.div className="mt-6 p-6 sm:p-8 flex flex-col bg-medium bg-no-repeat xl:[background-image:url('../public/circuitb5.png'),url('../public/circuitb6.png')] [background-position:70%_top,left_bottom] border-solid border-4 border-light" variants={growIn}>
-            <div className="flex flex-col lg:flex-row justify-between lg:items-center">
-              <h1 className="text-2xl lg:text-3xl text-white font-mono font-bold">{events[2]['name']}</h1>
-              <h1 className="mt-2 text-sm lg:text-base text-white font-mono">{(new Date(events[2]['date'])).toDateString()}</h1>
-            </div>
-            <p className="mt-2 text-sm lg:text-base text-white font-sans leading-relaxed tracking-wide">{events[2]['description']}</p>
-          </motion.div>
+          {events.length > 1 ?
+            <motion.div className="mt-6 p-6 sm:p-8 flex flex-col bg-medium bg-no-repeat xl:[background-image:url('../public/circuitb3.png'),url('../public/circuitb4.png')] [background-position:60%_top,right_bottom] border-solid border-4 border-light" variants={growIn}>
+              <div className="flex flex-col lg:flex-row justify-between lg:items-center">
+                <h1 className="text-2xl lg:text-3xl text-white font-mono font-bold">{events[1]['name']}</h1>
+                <h1 className="mt-2 text-sm lg:text-base text-white font-mono">{(new Date(events[1]['date'])).toDateString()}</h1>
+              </div>
+              <p className="mt-2 text-sm lg:text-base text-white font-sans leading-relaxed tracking-wide">{events[1]['description']}</p>
+            </motion.div>
+          : ''}
+          {events.length > 2 ?
+            <motion.div className="mt-6 p-6 sm:p-8 flex flex-col bg-medium bg-no-repeat xl:[background-image:url('../public/circuitb5.png'),url('../public/circuitb6.png')] [background-position:70%_top,left_bottom] border-solid border-4 border-light" variants={growIn}>
+              <div className="flex flex-col lg:flex-row justify-between lg:items-center">
+                <h1 className="text-2xl lg:text-3xl text-white font-mono font-bold">{events[2]['name']}</h1>
+                <h1 className="mt-2 text-sm lg:text-base text-white font-mono">{(new Date(events[2]['date'])).toDateString()}</h1>
+              </div>
+              <p className="mt-2 text-sm lg:text-base text-white font-sans leading-relaxed tracking-wide">{events[2]['description']}</p>
+            </motion.div>
+          : ''}
         </motion.div>
       : ''}
       
