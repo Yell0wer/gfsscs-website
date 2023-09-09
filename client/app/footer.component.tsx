@@ -4,8 +4,6 @@ export default function Footer() {
   return (
     <div className="px-6 md:px-15vw py-10 flex flex-col md:flex-row justify-between bg-black">
       <h1 className="text-sm/loose lg:text-base/loose text-white font-sans leading-loose tracking-wide">
-        **All events currently posted are placeholders - real events will be planned and scheduled once the school year begins.**
-        <br />
         Open Rooms on Tuesdays and Thursdays in room 201
         <br />
         Have questions? Email us at <a href="mailto:glenforestss.cs@gmail.com" target="_blank" className="underline hover:text-gold transition-all duration-200">glenforestss.cs@gmail.com</a>
